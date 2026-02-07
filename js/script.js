@@ -44,6 +44,7 @@ const translations = {
         nav_others: "Other Works",
         nav_novels: "Novels",
         nav_store: "Everything Store",
+        nav_frontend: "Frontend Mastery",
         novels_page_title: "My Creative Writing",
         novels_page_desc: "Selected stories and web novels from ReadAwrite.",
         btn_read_now: "Read Now <i class='fas fa-external-link-alt'></i>",
@@ -60,7 +61,17 @@ const translations = {
         drink_kasayuki: "KasaYuki (Sour)",
         drink_shinifuyu: "ShiniFuyu (Sweet)",
         btn_view_drinks: "View Drinks Section",
-        btn_view_food: "View Food Section"
+        btn_view_food: "View Food Section",
+        frontend_title: "Professional Design System",
+        frontend_desc: "A showcase of frontend architecture, UI/UX consistency, and graphic design mastery.",
+        design_colors: "Visual Palette",
+        design_typo: "Typography System",
+        design_components: "Interactive Components",
+        design_architecture: "Frontend Architecture",
+        desc_colors: "Harmonious color schemes designed for modern dark mode aesthetics.",
+        desc_typo: "Carefully curated typefaces for maximum readability and visual hierarchy.",
+        desc_components: "Re-usable, glassmorphic UI elements built with modular CSS.",
+        desc_architecture: "Scaleable architecture: Component logic, state management, and API integration."
     },
     th: {
         nav_home: "หน้าแรก",
@@ -107,6 +118,7 @@ const translations = {
         nav_others: "งานอื่น ๆ",
         nav_novels: "งานนิยาย",
         nav_store: "ขายทุกอย่าง store",
+        nav_frontend: "ดีไซน์เทพระดับมือฉบัง",
         novels_page_title: "งานเขียนแนวสร้างสรรค์",
         novels_page_desc: "รวบรวมผลงานนิยายที่เขียนลงบน ReadAwrite",
         btn_read_now: "อ่านเลย <i class='fas fa-external-link-alt'></i>",
@@ -123,7 +135,17 @@ const translations = {
         drink_kasayuki: "KasaYuki (รสเปรี้ยวซ่า)",
         drink_shinifuyu: "ShiniFuyu (รสหวานฉ่ำ)",
         btn_view_drinks: "ไปดูเมนูน้ำ",
-        btn_view_food: "ไปดูเมนูของคาว"
+        btn_view_food: "ไปดูเมนูของคาว",
+        frontend_title: "ระบบดีไซน์ระดับโปร",
+        frontend_desc: "การนำเสนอโครงสร้าง Frontend ความสอดคล้องของ UI/UX และศิลปะการออกแบบกราฟิกขั้นสูง",
+        design_colors: "ชุดสีสุดลงตัว",
+        design_typo: "ระบบตัวอักษร",
+        design_components: "คอมโพเนนต์แบบโต้ตอบ",
+        design_architecture: "สถาปัตยกรรม Frontend",
+        desc_colors: "ชุดสีที่ผ่านการคัดสรรมาเพื่อความสวยงามในโหมดมืดสมัยใหม่",
+        desc_typo: "การเลือกใช้ฟอนต์และลำดับขั้นตอนที่ช่วยให้อ่านง่ายและดูเป็นมืออาชีพ",
+        desc_components: "องค์ประกอบ UI แบบโปร่งแสง พัฒนาด้วย Modular CSS ชั้นนำ",
+        desc_architecture: "โครงสร้างที่ยืดหยุ่น: การจัดการสถานะ, ตรรกะของคอมโพเนนต์ และการเชื่อมต่อ API"
     },
     zh: {
         nav_home: "首页",
@@ -170,6 +192,7 @@ const translations = {
         nav_others: "其他作品",
         nav_novels: "小说",
         nav_store: "万货商店",
+        nav_frontend: "前端大师",
         novels_page_title: "我的创意写作",
         novels_page_desc: "ReadAwrite 上的精选故事和网络小说。",
         btn_read_now: "立即阅读 <i class='fas fa-external-link-alt'></i>",
@@ -186,7 +209,17 @@ const translations = {
         drink_kasayuki: "KasaYuki (酸味)",
         drink_shinifuyu: "ShiniFuyu (甜味)",
         btn_view_drinks: "查看饮料区",
-        btn_view_food: "查看食品区"
+        btn_view_food: "查看食品区",
+        frontend_title: "专业设计系统",
+        frontend_desc: "展示前端架构、UI/UX 一致性和平面设计造诣。",
+        design_colors: "视觉调色板",
+        design_typo: "排版系统",
+        design_components: "交互式组件",
+        design_architecture: "前端架构",
+        desc_colors: "专为现代暗模式美学设计的和谐配色方案。",
+        desc_typo: "精心挑选的字体，以实现最大的可读性和视觉层次感。",
+        desc_components: "使用模块化 CSS 构建的可重用玻璃拟态 UI 元素。",
+        desc_architecture: "可扩展架构：组件逻辑、状态管理和 API 集成。"
     },
     ja: {
         nav_home: "ホーム",
@@ -233,11 +266,12 @@ const translations = {
         nav_others: "その他の活動",
         nav_novels: "小説",
         nav_store: "何でも屋ストア",
+        nav_frontend: "フロントエンド職人",
         novels_page_title: "クリエイティブ・ライティング",
         novels_page_desc: "ReadAwrite の厳選された物語やライトノベル。",
         btn_read_now: "今すぐ読む <i class='fas fa-external-link-alt'></i>",
         chicken_title: "黒雪メニュー",
-        chicken_desc: "町の最高のフライドチキン、秘密のレシピをご提供します。ShiniFuyu Shipper.",
+        chicken_desc: "町の最高のフライドチキン、秘密의レシピをご提供します。ShiniFuyu Shipper.",
         chicken_menu_orig: "オリジナルレシピ",
         chicken_menu_spicy: "黒雪スパイシー",
         chicken_menu_garlic: "ガーリックバター",
@@ -249,8 +283,18 @@ const translations = {
         drink_kasayuki: "KasaYuki (酸っぱい)",
         drink_shinifuyu: "ShiniFuyu (甘い)",
         btn_view_drinks: "ドリンクコーナーを見る",
-        btn_view_food: "フードコーナーを見る"
-    }
+        btn_view_food: "フードコーナーを見る",
+        frontend_title: "プロフェッショナル・デザインシステム",
+        frontend_desc: "フロントエンドのアーキテクチャ、UI/UXの一貫性、そしてグラフィックデザインの真髄を紹介します。",
+        design_colors: "ビジュアルパレット",
+        design_typo: "タイポグラフィシステム",
+        design_components: "インタラクティブ・コンポーネント",
+        design_architecture: "フロントエンド構造",
+        desc_colors: "現代のダークモード美学に合わせて設計された調和のとれた配色案。",
+        desc_typo: "読みやすさと視認性を最大限に高めるために厳選された書体。",
+        desc_components: "モジュール式CSSで構築された、再利用可能なグラスモーフィズムUI要素。",
+        desc_architecture: "拡張性のある設計：コンポーネントロジック、状態管理、API統合。"
+    },
 };
 
 document.addEventListener('DOMContentLoaded', () => {
