@@ -113,8 +113,17 @@
                 <button onclick="randomize(3)" class="btn secondary" data-i18n="lotto_last3">เลขท้าย 3 ตัว</button>
                 <button onclick="randomize(2)" class="btn secondary" data-i18n="lotto_last2">เลขท้าย 2 ตัว</button>
             </div>
-            <div style="margin-top: 2rem;">
-                <button id="lang-toggle" class="lang-btn">TH</button>
+            <div class="dropdown" style="margin-top: 2rem;">
+                <button class="lang-btn">
+                    <i class="fas fa-globe"></i> <span id="current-lang-text">EN</span> <i
+                        class="fas fa-caret-down"></i>
+                </button>
+                <ul class="dropdown-content lang-dropdown-content">
+                    <li onclick="changeLanguage('en')"><a>English</a></li>
+                    <li onclick="changeLanguage('th')"><a>ไทย</a></li>
+                    <li onclick="changeLanguage('zh')"><a>中文</a></li>
+                    <li onclick="changeLanguage('ja')"><a>日本語</a></li>
+                </ul>
             </div>
         </div>
 

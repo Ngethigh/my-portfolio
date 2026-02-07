@@ -34,7 +34,7 @@
                 <ul class="dropdown-content">
                     <li><a href="lotto.html" data-i18n="nav_lotto">Lotto Random</a></li>
                     <li><a href="shop.html" data-i18n="nav_shop">Mini Shop</a></li>
-                    <li><a href="chicken-shop.html" data-i18n="nav_chicken">Kuroyuki Chicken</a></li>
+                    <li><a href="chicken-shop.html" data-i18n="nav_store">Everything Store</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -44,7 +44,18 @@
                 </ul>
             </li>
             <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
-            <li><button id="lang-toggle" class="lang-btn">TH</button></li>
+            <li class="dropdown">
+                <button class="lang-btn">
+                    <i class="fas fa-globe"></i> <span id="current-lang-text">EN</span> <i
+                        class="fas fa-caret-down"></i>
+                </button>
+                <ul class="dropdown-content lang-dropdown-content">
+                    <li onclick="changeLanguage('en')"><a>English</a></li>
+                    <li onclick="changeLanguage('th')"><a>ไทย</a></li>
+                    <li onclick="changeLanguage('zh')"><a>中文</a></li>
+                    <li onclick="changeLanguage('ja')"><a>日本語</a></li>
+                </ul>
+            </li>
         </ul>
         <div class="hamburger">
             <span class="bar"></span>

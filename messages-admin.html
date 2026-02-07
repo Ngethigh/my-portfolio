@@ -133,43 +133,53 @@
 
     <a href="index.html" class="home-link">
         <i class="fas fa-arrow-left"></i> Home
-    </a>
-
-    <div class="container admin-container">
-        <div class="admin-header">
-            <div>
-                <h1 class="section-title" style="margin-bottom: 0.5rem;">Message Inbox</h1>
-                <p style="color: var(--text-muted);">Local Storage Management (Demo Mode)</p>
-            </div>
-            <button class="clear-btn" onclick="clearMessages()">
-                <i class="fas fa-trash-alt"></i> Clear All
+        <div class="lang-container dropdown" style="position: absolute; top: 20px; right: 20px; z-index: 1001;">
+            <button class="lang-btn">
+                <i class="fas fa-globe"></i> <span id="current-lang-text">EN</span> <i class="fas fa-caret-down"></i>
             </button>
+            <ul class="dropdown-content lang-dropdown-content">
+                <li onclick="changeLanguage('en')"><a>English</a></li>
+                <li onclick="changeLanguage('th')"><a>ไทย</a></li>
+                <li onclick="changeLanguage('zh')"><a>中文</a></li>
+                <li onclick="changeLanguage('ja')"><a>日本語</a></li>
+            </ul>
         </div>
 
-        <div id="messageInbox" class="message-list">
-            <!-- Messages will be injected here -->
+        <div class="container admin-container">
+            <div class="admin-header">
+                <div>
+                    <h1 class="section-title" style="margin-bottom: 0.5rem;">Message Inbox</h1>
+                    <p style="color: var(--text-muted);">Local Storage Management (Demo Mode)</p>
+                </div>
+                <button class="clear-btn" onclick="clearMessages()">
+                    <i class="fas fa-trash-alt"></i> Clear All
+                </button>
+            </div>
+
+            <div id="messageInbox" class="message-list">
+                <!-- Messages will be injected here -->
+            </div>
+
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <i class="fas fa-envelope-open"></i>
+                <p>No messages found in your local storage.</p>
+            </div>
         </div>
 
-        <div id="emptyState" class="empty-state" style="display: none;">
-            <i class="fas fa-envelope-open"></i>
-            <p>No messages found in your local storage.</p>
-        </div>
-    </div>
+        <script>
+            function loadMessages() {
+                const inbox = document.getElementById('messageInbox');
+                const emptyState = document.getElementById('emptyState');
+                const messages = JSON.parse(localStorage.getItem('portfolio_messages') || '[]');
 
-    <script>
-        function loadMessages() {
-            const inbox = document.getElementById('messageInbox');
-            const emptyState = document.getElementById('emptyState');
-            const messages = JSON.parse(localStorage.getItem('portfolio_messages') || '[]');
+                if (messages.length === 0) {
+                    inbox.innerHTML = '';
+                    emptyState.style.display = 'block';
+                    return;
+                }
 
-            if (messages.length === 0) {
-                inbox.innerHTML = '';
-                emptyState.style.display = 'block';
-                return;
-            }
-
-            emptyState.style.display = 'none';
-            inbox.innerHTML = messages.reverse().map((msg, index) => `
+                emptyState.style.display = 'none';
+                inbox.innerHTML = messages.reverse().map((msg, index) => `
                 <div class="message-card">
                     <div class="message-header">
                         <div class="sender-info">
@@ -181,18 +191,18 @@
                     <div class="message-body">${msg.message}</div>
                 </div>
             `).join('');
-        }
-
-        function clearMessages() {
-            if (confirm('Are you sure you want to clear all local messages?')) {
-                localStorage.removeItem('portfolio_messages');
-                loadMessages();
             }
-        }
 
-        // Load initially
-        window.onload = loadMessages;
-    </script>
+            function clearMessages() {
+                if (confirm('Are you sure you want to clear all local messages?')) {
+                    localStorage.removeItem('portfolio_messages');
+                    loadMessages();
+                }
+            }
+
+            // Load initially
+            window.onload = loadMessages;
+        </script>
 </body>
 
 </html>

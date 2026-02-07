@@ -43,17 +43,24 @@ const translations = {
         back_home: "Back to Home",
         nav_others: "Other Works",
         nav_novels: "Novels",
-        nav_chicken: "Kuroyuki Chicken",
+        nav_store: "Everything Store",
         novels_page_title: "My Creative Writing",
         novels_page_desc: "Selected stories and web novels from ReadAwrite.",
         btn_read_now: "Read Now <i class='fas fa-external-link-alt'></i>",
-        chicken_title: "Kuroyuki Fried Chicken",
-        chicken_desc: "The best fried chicken in town, served with our secret recipes.",
+        chicken_title: "Kuroyuki Menu",
+        chicken_desc: "The best fried chicken in town, served with our secret recipes. ShiniFuyu Shipper.",
         chicken_menu_orig: "Original Recipe",
         chicken_menu_spicy: "Kuroyuki Spicy",
         chicken_menu_garlic: "Garlic Butter",
         chicken_menu_soy: "Soy Garlic",
-        chicken_order: "Order Now"
+        chicken_order: "Add to Basket",
+        nav_drinks: "Drinks Shop",
+        drinks_title: "Ship-Pairing Drinks",
+        drinks_desc: "Refreshing drinks inspired by your favorite pairs.",
+        drink_kasayuki: "KasaYuki (Sour)",
+        drink_shinifuyu: "ShiniFuyu (Sweet)",
+        btn_view_drinks: "View Drinks Section",
+        btn_view_food: "View Food Section"
     },
     th: {
         nav_home: "หน้าแรก",
@@ -99,17 +106,24 @@ const translations = {
         back_home: "กลับหน้าแรก",
         nav_others: "งานอื่น ๆ",
         nav_novels: "งานนิยาย",
-        nav_chicken: "ไก่ทอด Kuroyuki",
+        nav_store: "ขายทุกอย่าง store",
         novels_page_title: "งานเขียนแนวสร้างสรรค์",
         novels_page_desc: "รวบรวมผลงานนิยายที่เขียนลงบน ReadAwrite",
         btn_read_now: "อ่านเลย <i class='fas fa-external-link-alt'></i>",
-        chicken_title: "ไก่ทอด Kuroyuki",
-        chicken_desc: "ไก่ทอดสูตรลับความอร่อยระดับตำนาน หลากหลายรสชาติที่คุณต้องลอง",
+        chicken_title: "เมนู Kuroyuki",
+        chicken_desc: "ไก่ทอดสูตรลับความอร่อยระดับตำนาน ShiniFuyu Shipper.",
         chicken_menu_orig: "สูตรดั้งเดิม",
         chicken_menu_spicy: "เผ็ดซี้ด Kuroyuki",
         chicken_menu_garlic: "เนยกระเทียมพรีเมียม",
         chicken_menu_soy: "ซอสถั่วเหลืองกระเทียม",
-        chicken_order: "สั่งเลย"
+        chicken_order: "หยิบใส่ตะกร้า",
+        nav_drinks: "ร้านน้ำ",
+        drinks_title: "เมนูน้ำคู่จิ้น",
+        drinks_desc: "เครื่องดื่มสุดสดชื่นที่ได้รับแรงบันดาลใจจากคู่จิ้นสุดฮอต",
+        drink_kasayuki: "KasaYuki (รสเปรี้ยวซ่า)",
+        drink_shinifuyu: "ShiniFuyu (รสหวานฉ่ำ)",
+        btn_view_drinks: "ไปดูเมนูน้ำ",
+        btn_view_food: "ไปดูเมนูของคาว"
     },
     zh: {
         nav_home: "首页",
@@ -155,17 +169,24 @@ const translations = {
         back_home: "回到首页",
         nav_others: "其他作品",
         nav_novels: "小说",
-        nav_chicken: "黒雪炸鸡",
+        nav_store: "万货商店",
         novels_page_title: "我的创意写作",
         novels_page_desc: "ReadAwrite 上的精选故事和网络小说。",
         btn_read_now: "立即阅读 <i class='fas fa-external-link-alt'></i>",
-        chicken_title: "黒雪炸鸡店",
-        chicken_desc: "城里最好的炸鸡，配上我们的秘密食谱。",
+        chicken_title: "黒雪菜单",
+        chicken_desc: "城里最好的炸鸡，配上我们的秘密食谱。ShiniFuyu Shipper.",
         chicken_menu_orig: "原味炸鸡",
         chicken_menu_spicy: "秘制辣味",
         chicken_menu_garlic: "蒜泥奶油",
         chicken_menu_soy: "蒜香酱油",
-        chicken_order: "立即下单"
+        chicken_order: "加入篮子",
+        nav_drinks: "饮料店",
+        drinks_title: "CP 饮品",
+        drinks_desc: "受你最喜欢的配对启发的清爽饮品。",
+        drink_kasayuki: "KasaYuki (酸味)",
+        drink_shinifuyu: "ShiniFuyu (甜味)",
+        btn_view_drinks: "查看饮料区",
+        btn_view_food: "查看食品区"
     },
     ja: {
         nav_home: "ホーム",
@@ -211,17 +232,24 @@ const translations = {
         back_home: "ホームに戻る",
         nav_others: "その他の活動",
         nav_novels: "小説",
-        nav_chicken: "黒雪フライドチキン",
+        nav_store: "何でも屋ストア",
         novels_page_title: "クリエイティブ・ライティング",
         novels_page_desc: "ReadAwrite の厳選された物語やライトノベル。",
         btn_read_now: "今すぐ読む <i class='fas fa-external-link-alt'></i>",
-        chicken_title: "黒雪フライドチキン",
-        chicken_desc: "町の最高のフライドチキン、秘密のレシピをご提供します。",
+        chicken_title: "黒雪メニュー",
+        chicken_desc: "町の最高のフライドチキン、秘密のレシピをご提供します。ShiniFuyu Shipper.",
         chicken_menu_orig: "オリジナルレシピ",
         chicken_menu_spicy: "黒雪スパイシー",
         chicken_menu_garlic: "ガーリックバター",
         chicken_menu_soy: "醤油ガーリック",
-        chicken_order: "今すぐ注文"
+        chicken_order: "バスケットに追加",
+        nav_drinks: "ドリンクショップ",
+        drinks_title: "カップリング・ドリンク",
+        drinks_desc: "お気に入りのペアにインスパイアされた爽やかなドリンク。",
+        drink_kasayuki: "KasaYuki (酸っぱい)",
+        drink_shinifuyu: "ShiniFuyu (甘い)",
+        btn_view_drinks: "ドリンクコーナーを見る",
+        btn_view_food: "フードコーナーを見る"
     }
 };
 
@@ -342,42 +370,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Language Switcher Logic
-    const langToggleBtn = document.getElementById('lang-toggle');
     let currentLang = localStorage.getItem('lang') || 'en';
 
     function updateLanguage(lang) {
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
-            if (translations[lang][key]) {
+            if (translations[lang] && translations[lang][key]) {
                 element.innerHTML = translations[lang][key]; // innerHTML to handle icons
             }
         });
 
         document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
             const key = element.getAttribute('data-i18n-placeholder');
-            if (translations[lang][key]) {
+            if (translations[lang] && translations[lang][key]) {
                 element.setAttribute('placeholder', translations[lang][key]);
             }
         });
 
-        if (langToggleBtn) {
-            langToggleBtn.textContent = translations[lang]['lang_btn'];
+        // Update current language button text
+        const langText = document.getElementById('current-lang-text');
+        if (langText) {
+            langText.textContent = lang.toUpperCase();
         }
 
         localStorage.setItem('lang', lang);
+        currentLang = lang;
     }
+
+    // Global function to be called from HTML
+    window.changeLanguage = function (lang) {
+        updateLanguage(lang);
+    };
 
     // Initialize Language
     updateLanguage(currentLang);
-
-    if (langToggleBtn) {
-        langToggleBtn.addEventListener('click', () => {
-            const langs = ['en', 'th', 'zh', 'ja'];
-            let nextIndex = (langs.indexOf(currentLang) + 1) % langs.length;
-            currentLang = langs[nextIndex];
-            updateLanguage(currentLang);
-        });
-    }
 
     // Navbar Scroll Effect
     const navbar = document.querySelector('.navbar');

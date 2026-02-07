@@ -168,7 +168,18 @@
                 <p style="color: var(--text-muted);" data-i18n="shop_desc">Simulated E-commerce Demo</p>
             </div>
             <div style="display: flex; gap: 1.5rem; align-items: center;">
-                <button id="lang-toggle" class="lang-btn">TH</button>
+                <div class="lang-container dropdown" style="position: absolute; top: 20px; right: 20px; z-index: 1001;">
+                    <button class="lang-btn">
+                        <i class="fas fa-globe"></i> <span id="current-lang-text">EN</span> <i
+                            class="fas fa-caret-down"></i>
+                    </button>
+                    <ul class="dropdown-content lang-dropdown-content">
+                        <li onclick="changeLanguage('en')"><a>English</a></li>
+                        <li onclick="changeLanguage('th')"><a>ไทย</a></li>
+                        <li onclick="changeLanguage('zh')"><a>中文</a></li>
+                        <li onclick="changeLanguage('ja')"><a>日本語</a></li>
+                    </ul>
+                </div>
                 <div class="cart-btn-wrapper" onclick="showCart()">
                     <button class="cart-btn">
                         <i class="fas fa-shopping-cart"></i> <span data-i18n="shop_cart">Cart</span>

@@ -104,11 +104,28 @@ body {
     font-family: inherit;
     font-weight: 600;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .lang-btn:hover {
     border-color: var(--accent-primary);
     color: var(--accent-primary);
+}
+
+.lang-dropdown-content {
+    right: 0;
+    left: auto;
+    min-width: 120px;
+}
+
+.lang-dropdown-content li {
+    cursor: pointer;
+}
+
+.lang-dropdown-content li:hover {
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Dropdown Menu */
