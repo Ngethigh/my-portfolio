@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novels | Kraisit Robchana</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .novels-container {
+            padding-top: 100px;
+            padding-bottom: 5rem;
+        }
+
+        .novels-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .novel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .novel-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .novel-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 15px 35px rgba(255, 0, 212, 0.1);
+        }
+
+        .novel-cover {
+            height: 400px;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .novel-cover i {
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        .novel-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-secondary);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .novel-info {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .novel-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            line-height: 1.3;
+        }
+
+        .novel-metadata {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .novel-metadata span i {
+            margin-right: 5px;
+            color: var(--accent-secondary);
+        }
+
+        .novel-description {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .read-btn {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--accent-secondary);
+            color: var(--accent-secondary);
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .read-btn:hover {
+            background: var(--accent-secondary);
+            color: white;
+        }
+
+        .home-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+            z-index: 100;
+        }
+
+        .home-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .lang-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-gradient-1"></div>
+    <div class="bg-gradient-2"></div>
+
+    <a href="index.html" class="home-link" data-i18n="back_home">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+
+    <div class="lang-container">
+        <button id="lang-toggle" class="lang-btn">TH</button>
+    </div>
+
+    <div class="container novels-container">
+
+        <div class="novels-header">
+            <h1 class="section-title" style="font-size: 3rem; margin-bottom: 1rem;" data-i18n="novels_page_title">My
+                Creative Writing</h1>
+            <p style="color: var(--text-muted); font-size: 1.2rem;" data-i18n="novels_page_desc">Selected stories and
+                web novels from ReadAwrite.</p>
+        </div>
+
+        <div class="novel-grid">
+            <!-- Novel 1 -->
+            <div class="novel-card">
+                <span class="novel-badge">ReadAwrite</span>
+                <div class="novel-cover">
+                    <i class="fas fa-brain"></i>
+                    <!-- Add your book cover image here in the future -->
+                    <!-- <img src="assets/images/novel1.jpg" alt="Novel Title"> -->
+                </div>
+                <div class="novel-info">
+                    <h3 class="novel-title">MBTI Story (ชื่อนิยายของคุณ)</h3>
+                    <div class="novel-metadata">
+                        <span><i class="fas fa-feather-alt"></i> Personality / Drama</span>
+                        <span><i class="fas fa-eye"></i> Latest Update</span>
+                    </div>
+                    <p class="novel-description">
+                        เรื่องราวที่เน้นความสัมพันธ์และความเป็นตัวตนผ่านมุมมองของ MBTI (Add your description here).
+                    </p>
+                    <a href="https://www.readawrite.com/a/113ca22693f6d57924c0c8939b5de686" target="_blank"
+                        class="read-btn" data-i18n="btn_read_now">
+                        Read Now <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Novel 2 -->
+            <div class="novel-card">
+                <span class="novel-badge">ReadAwrite</span>
+                <div class="novel-cover" style="background: linear-gradient(45deg, #2a0a1a, #4a0a2a);">
+                    <i class="fas fa-heart" style="color: #ff4d4d; opacity: 1;"></i>
+                </div>
+                <div class="novel-info">
+                    <h3 class="novel-title">Love Story (ชื่อนิยายของคุณ)</h3>
+                    <div class="novel-metadata">
+                        <span><i class="fas fa-feather-alt"></i> Romance</span>
+                        <span><i class="fas fa-eye"></i> Popular</span>
+                    </div>
+                    <p class="novel-description">
+                        เรื่องรักที่แสนอบอุ่นหัวใจ (Add your compelling novel synopsis here).
+                    </p>
+                    <a href="https://www.readawrite.com/a/98870e7d8babad32ccc202ec1f393b8a" target="_blank"
+                        class="read-btn" data-i18n="btn_read_now">
+                        Read Now <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Kraisit Robchana. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

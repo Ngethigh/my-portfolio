@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Admin | Kraisit Robchana</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .admin-container {
+            padding-top: 100px;
+            padding-bottom: 5rem;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .message-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .message-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .message-card:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.5rem;
+        }
+
+        .sender-info h4 {
+            color: var(--accent-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .sender-info p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .message-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .message-body {
+            line-height: 1.6;
+            color: var(--text-color);
+            white-space: pre-wrap;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px dashed var(--card-border);
+            color: var(--text-muted);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .clear-btn {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff4d4d;
+            color: #ff4d4d;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-btn:hover {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        .home-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+            z-index: 100;
+        }
+
+        .home-link:hover {
+            color: var(--accent-primary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-gradient-1"></div>
+    <div class="bg-gradient-2"></div>
+
+    <a href="index.html" class="home-link">
+        <i class="fas fa-arrow-left"></i> Home
+    </a>
+
+    <div class="container admin-container">
+        <div class="admin-header">
+            <div>
+                <h1 class="section-title" style="margin-bottom: 0.5rem;">Message Inbox</h1>
+                <p style="color: var(--text-muted);">Local Storage Management (Demo Mode)</p>
+            </div>
+            <button class="clear-btn" onclick="clearMessages()">
+                <i class="fas fa-trash-alt"></i> Clear All
+            </button>
+        </div>
+
+        <div id="messageInbox" class="message-list">
+            <!-- Messages will be injected here -->
+        </div>
+
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <i class="fas fa-envelope-open"></i>
+            <p>No messages found in your local storage.</p>
+        </div>
+    </div>
+
+    <script>
+        function loadMessages() {
+            const inbox = document.getElementById('messageInbox');
+            const emptyState = document.getElementById('emptyState');
+            const messages = JSON.parse(localStorage.getItem('portfolio_messages') || '[]');
+
+            if (messages.length === 0) {
+                inbox.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            inbox.innerHTML = messages.reverse().map((msg, index) => `
+                <div class="message-card">
+                    <div class="message-header">
+                        <div class="sender-info">
+                            <h4>${msg.name}</h4>
+                            <p>${msg.email}</p>
+                        </div>
+                        <div class="message-date">${msg.date}</div>
+                    </div>
+                    <div class="message-body">${msg.message}</div>
+                </div>
+            `).join('');
+        }
+
+        function clearMessages() {
+            if (confirm('Are you sure you want to clear all local messages?')) {
+                localStorage.removeItem('portfolio_messages');
+                loadMessages();
+            }
+        }
+
+        // Load initially
+        window.onload = loadMessages;
+    </script>
+</body>
+
+</html>

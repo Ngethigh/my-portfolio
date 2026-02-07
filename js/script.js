@@ -40,7 +40,12 @@ const translations = {
         shop_desc: "Simulated E-commerce Demo",
         shop_cart: "Cart",
         shop_add: "Add to Cart",
-        back_home: "Back to Home"
+        back_home: "Back to Home",
+        nav_others: "Other Works",
+        nav_novels: "Novels",
+        novels_page_title: "My Creative Writing",
+        novels_page_desc: "Selected stories and web novels from ReadAwrite.",
+        btn_read_now: "Read Now <i class='fas fa-external-link-alt'></i>"
     },
     th: {
         nav_home: "หน้าแรก",
@@ -83,7 +88,12 @@ const translations = {
         shop_desc: "เดโมระบบร้านค้าออนไลน์",
         shop_cart: "ตะกร้า",
         shop_add: "หยิบใส่ตะกร้า",
-        back_home: "กลับหน้าแรก"
+        back_home: "กลับหน้าแรก",
+        nav_others: "งานอื่น ๆ",
+        nav_novels: "งานนิยาย",
+        novels_page_title: "งานเขียนแนวสร้างสรรค์",
+        novels_page_desc: "รวบรวมผลงานนิยายที่เขียนลงบน ReadAwrite",
+        btn_read_now: "อ่านเลย <i class='fas fa-external-link-alt'></i>"
     },
     zh: {
         nav_home: "首页",
@@ -126,7 +136,12 @@ const translations = {
         shop_desc: "模拟电子商务演示",
         shop_cart: "购物车",
         shop_add: "加入购物车",
-        back_home: "回到首页"
+        back_home: "回到首页",
+        nav_others: "其他作品",
+        nav_novels: "小说",
+        novels_page_title: "我的创意写作",
+        novels_page_desc: "ReadAwrite 上的精选故事和网络小说。",
+        btn_read_now: "立即阅读 <i class='fas fa-external-link-alt'></i>"
     },
     ja: {
         nav_home: "ホーム",
@@ -169,7 +184,12 @@ const translations = {
         shop_desc: "シミュレートされた Eコマースデモ",
         shop_cart: "カート",
         shop_add: "カートに追加",
-        back_home: "ホームに戻る"
+        back_home: "ホームに戻る",
+        nav_others: "その他の活動",
+        nav_novels: "小説",
+        novels_page_title: "クリエイティブ・ライティング",
+        novels_page_desc: "ReadAwrite の厳選された物語やライトノベル。",
+        btn_read_now: "今すぐ読む <i class='fas fa-external-link-alt'></i>"
     }
 };
 
@@ -210,6 +230,16 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             setTimeout(() => {
+                // Save to localStorage
+                const messages = JSON.parse(localStorage.getItem('portfolio_messages') || '[]');
+                messages.push({
+                    name: name,
+                    email: email,
+                    message: message,
+                    date: new Date().toLocaleString()
+                });
+                localStorage.setItem('portfolio_messages', JSON.stringify(messages));
+
                 // Restore button
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
