@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto Randomizer | Kraisit Robchana</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .lotto-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            text-align: center;
+            gap: 3rem;
+        }
+
+        .lotto-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .lotto-display {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin: 2rem 0;
+            letter-spacing: 5px;
+            font-variant-numeric: tabular-nums;
+            min-height: 80px;
+        }
+
+        .lotto-btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .refresh-icon {
+            font-size: 5rem;
+            color: var(--accent-secondary);
+            margin-bottom: 1rem;
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .home-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .home-link:hover {
+            color: var(--accent-primary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-gradient-1"></div>
+    <div class="bg-gradient-2"></div>
+
+    <a href="index.html" class="home-link" data-i18n="back_home">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+
+    <div class="container lotto-container">
+
+        <div class="lotto-card">
+            <i class="fas fa-dice refresh-icon"></i>
+            <h1 class="section-title" style="font-size: 2.5rem; margin-bottom: 1rem;" data-i18n="lotto_title">Lotto
+                Randomizer</h1>
+            <p data-i18n="lotto_desc">เสี่ยงดวงกันหน่อยไหม? (Try your luck!)</p>
+
+            <div id="lottoResult" class="lotto-display">------</div>
+
+            <div class="lotto-btn-group">
+                <button onclick="randomize(6)" class="btn primary" data-i18n="lotto_p1">รางวัลที่ 1 (6 หลัก)</button>
+            </div>
+            <div class="lotto-btn-group" style="margin-top: 1rem;">
+                <button onclick="randomize(3)" class="btn secondary" data-i18n="lotto_last3">เลขท้าย 3 ตัว</button>
+                <button onclick="randomize(2)" class="btn secondary" data-i18n="lotto_last2">เลขท้าย 2 ตัว</button>
+            </div>
+            <div style="margin-top: 2rem;">
+                <button id="lang-toggle" class="lang-btn">TH</button>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Kraisit Robchana. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        function randomize(digits) {
+            const display = document.getElementById('lottoResult');
+            const duration = 1000; // Animation duration in ms
+            const interval = 50; // Update interval in ms
+            const steps = duration / interval;
+            let currentStep = 0;
+
+            // Clear styling
+            display.style.color = 'var(--accent-primary)';
+            display.style.transform = 'scale(1)';
+
+            const timer = setInterval(() => {
+                currentStep++;
+
+                // Generate random number string of specific length
+                let randomNum = '';
+                for (let i = 0; i < digits; i++) {
+                    randomNum += Math.floor(Math.random() * 10);
+                }
+
+                display.innerText = randomNum;
+
+                if (currentStep >= steps) {
+                    clearInterval(timer);
+                    // Final effect
+                    display.style.color = 'var(--accent-secondary)';
+                    display.style.transform = 'scale(1.2)';
+                    display.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                }
+            }, interval);
+        }
+    </script>
+</body>
+
+</html>

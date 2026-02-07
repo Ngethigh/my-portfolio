@@ -111,6 +111,55 @@ body {
     color: var(--accent-primary);
 }
 
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--nav-bg);
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    z-index: 1001;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    padding: 0.5rem 0;
+    flex-direction: column;
+    gap: 0;
+}
+
+.dropdown-content li {
+    width: 100%;
+}
+
+.dropdown-content a {
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--accent-primary);
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+.dropbtn i {
+    font-size: 0.8rem;
+    margin-left: 5px;
+}
+
 .hamburger {
     display: none;
     cursor: pointer;
@@ -507,6 +556,53 @@ footer {
     margin-bottom: 2rem;
 }
 
+
+/* Handbook Modal Styles */
+.handbook-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.handbook-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.handbook-item i {
+    font-size: 1.8rem;
+    color: var(--accent-secondary);
+    transition: transform 0.3s ease;
+}
+
+.handbook-item span {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.handbook-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 242, 255, 0.15);
+}
+
+.handbook-item:hover i {
+    transform: scale(1.1);
+    color: var(--accent-primary);
+}
+
+/* Close Button */
 .close-btn {
     background: var(--accent-primary);
     color: var(--bg-color);
