@@ -43,9 +43,17 @@ const translations = {
         back_home: "Back to Home",
         nav_others: "Other Works",
         nav_novels: "Novels",
+        nav_chicken: "Kuroyuki Chicken",
         novels_page_title: "My Creative Writing",
         novels_page_desc: "Selected stories and web novels from ReadAwrite.",
-        btn_read_now: "Read Now <i class='fas fa-external-link-alt'></i>"
+        btn_read_now: "Read Now <i class='fas fa-external-link-alt'></i>",
+        chicken_title: "Kuroyuki Fried Chicken",
+        chicken_desc: "The best fried chicken in town, served with our secret recipes.",
+        chicken_menu_orig: "Original Recipe",
+        chicken_menu_spicy: "Kuroyuki Spicy",
+        chicken_menu_garlic: "Garlic Butter",
+        chicken_menu_soy: "Soy Garlic",
+        chicken_order: "Order Now"
     },
     th: {
         nav_home: "หน้าแรก",
@@ -91,9 +99,17 @@ const translations = {
         back_home: "กลับหน้าแรก",
         nav_others: "งานอื่น ๆ",
         nav_novels: "งานนิยาย",
+        nav_chicken: "ไก่ทอด Kuroyuki",
         novels_page_title: "งานเขียนแนวสร้างสรรค์",
         novels_page_desc: "รวบรวมผลงานนิยายที่เขียนลงบน ReadAwrite",
-        btn_read_now: "อ่านเลย <i class='fas fa-external-link-alt'></i>"
+        btn_read_now: "อ่านเลย <i class='fas fa-external-link-alt'></i>",
+        chicken_title: "ไก่ทอด Kuroyuki",
+        chicken_desc: "ไก่ทอดสูตรลับความอร่อยระดับตำนาน หลากหลายรสชาติที่คุณต้องลอง",
+        chicken_menu_orig: "สูตรดั้งเดิม",
+        chicken_menu_spicy: "เผ็ดซี้ด Kuroyuki",
+        chicken_menu_garlic: "เนยกระเทียมพรีเมียม",
+        chicken_menu_soy: "ซอสถั่วเหลืองกระเทียม",
+        chicken_order: "สั่งเลย"
     },
     zh: {
         nav_home: "首页",
@@ -139,9 +155,17 @@ const translations = {
         back_home: "回到首页",
         nav_others: "其他作品",
         nav_novels: "小说",
+        nav_chicken: "黒雪炸鸡",
         novels_page_title: "我的创意写作",
         novels_page_desc: "ReadAwrite 上的精选故事和网络小说。",
-        btn_read_now: "立即阅读 <i class='fas fa-external-link-alt'></i>"
+        btn_read_now: "立即阅读 <i class='fas fa-external-link-alt'></i>",
+        chicken_title: "黒雪炸鸡店",
+        chicken_desc: "城里最好的炸鸡，配上我们的秘密食谱。",
+        chicken_menu_orig: "原味炸鸡",
+        chicken_menu_spicy: "秘制辣味",
+        chicken_menu_garlic: "蒜泥奶油",
+        chicken_menu_soy: "蒜香酱油",
+        chicken_order: "立即下单"
     },
     ja: {
         nav_home: "ホーム",
@@ -187,9 +211,17 @@ const translations = {
         back_home: "ホームに戻る",
         nav_others: "その他の活動",
         nav_novels: "小説",
+        nav_chicken: "黒雪フライドチキン",
         novels_page_title: "クリエイティブ・ライティング",
         novels_page_desc: "ReadAwrite の厳選された物語やライトノベル。",
-        btn_read_now: "今すぐ読む <i class='fas fa-external-link-alt'></i>"
+        btn_read_now: "今すぐ読む <i class='fas fa-external-link-alt'></i>",
+        chicken_title: "黒雪フライドチキン",
+        chicken_desc: "町の最高のフライドチキン、秘密のレシピをご提供します。",
+        chicken_menu_orig: "オリジナルレシピ",
+        chicken_menu_spicy: "黒雪スパイシー",
+        chicken_menu_garlic: "ガーリックバター",
+        chicken_menu_soy: "醤油ガーリック",
+        chicken_order: "今すぐ注文"
     }
 };
 
