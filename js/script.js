@@ -333,13 +333,38 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
 
-            setTimeout(() => {
-                // Save to localStorage
+            // Formspree Integration (FOR DEPLOYMENT)
+            // 1. Go to https://formspree.io/ and create a free account
+            // 2. Create a form and paste your Form ID below
+            const FORMSPREE_ID = "xlgwdgwp";
+            const FORMSPREE_URL = `https://formspree.io/f/xlgwdgwp`;
+
+            setTimeout(async () => {
+                try {
+                    console.log('Attempting to send message to Formspree...', formData);
+
+                    // IF FORMSPREE_ID is not set, use local/simulation mode
+                    if (FORMSPREE_ID === "YOUR_FORMSPREE_ID_HERE") {
+                        console.warn('Formspree ID not set, simulating success...');
+                    } else {
+                        const response = await fetch(FORMSPREE_URL, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify(formData)
+                        });
+                        if (!response.ok) throw new Error('Formspree submission failed');
+                    }
+                } catch (error) {
+                    console.error('Error saving message:', error);
+                }
+
+                // Keep saving to localStorage for legacy tracking
                 const messages = JSON.parse(localStorage.getItem('portfolio_messages') || '[]');
                 messages.push({
-                    name: name,
-                    email: email,
-                    message: message,
+                    ...formData,
                     date: new Date().toLocaleString()
                 });
                 localStorage.setItem('portfolio_messages', JSON.stringify(messages));
@@ -348,10 +373,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
 
-                // Show Success Modal directly
+                // Show Success Modal
                 showModal();
                 contactForm.reset();
-            }, 1500); // 1.5 seconds delay
+            }, 1000);
         });
     }
 

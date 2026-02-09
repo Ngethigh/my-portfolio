@@ -149,12 +149,33 @@
             <div class="admin-header">
                 <div>
                     <h1 class="section-title" style="margin-bottom: 0.5rem;">Message Inbox</h1>
-                    <p style="color: var(--text-muted);">Local Storage Management (Demo Mode)</p>
+                    <p style="color: var(--accent-primary); font-weight: 600;">
+                        <i class="fas fa-paper-plane"></i> Live form is connected to Formspree
+                    </p>
                 </div>
-                <button class="clear-btn" onclick="clearMessages()">
-                    <i class="fas fa-trash-alt"></i> Clear All
-                </button>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="https://formspree.io/forms" target="_blank" class="preview-btn"
+                        style="text-decoration: none; font-size: 0.9rem; padding: 0.6rem 1.2rem;">
+                        <i class="fas fa-external-link-alt"></i> Open Formspree Dashboard
+                    </a>
+                    <button class="clear-btn" onclick="clearMessages()">
+                        <i class="fas fa-trash-alt"></i> Clear Local Cache
+                    </button>
+                </div>
             </div>
+
+            <div
+                style="background: rgba(0, 242, 255, 0.05); border: 1px solid var(--accent-primary); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                <h4 style="color: var(--accent-primary); margin-bottom: 0.5rem;"><i class="fas fa-info-circle"></i>
+                    ทางเลือก A: GitHub Pages + Formspree</h4>
+                <p style="font-size: 0.95rem; line-height: 1.6;">ข้อความใหม่จะถูกส่งเข้า **Email** ของคุณโดยตรง
+                    และคุณสามารถเข้าไปเช็คประวัติข้อความทั้งหมดได้ที่ **Formspree Dashboard** ครับ (ฟรีและไม่ต้องใช้
+                    Server PHP)</p>
+            </div>
+
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+                <i class="fas fa-history"></i> Local History (ประวัติล่าสุดในเครื่องนี้)
+            </h3>
 
             <div id="messageInbox" class="message-list">
                 <!-- Messages will be injected here -->
@@ -162,41 +183,83 @@
 
             <div id="emptyState" class="empty-state" style="display: none;">
                 <i class="fas fa-envelope-open"></i>
-                <p>No messages found in your local storage.</p>
+                <p>No local message history found.</p>
             </div>
         </div>
 
         <script>
-            function loadMessages() {
+            async function loadMessages() {
                 const inbox = document.getElementById('messageInbox');
                 const emptyState = document.getElementById('emptyState');
-                const messages = JSON.parse(localStorage.getItem('portfolio_messages') || '[]');
 
-                if (messages.length === 0) {
-                    inbox.innerHTML = '';
-                    emptyState.style.display = 'block';
-                    return;
-                }
+                try {
+                    // Try to load from PHP Backend
+                    const response = await fetch('get_messages.php');
+                    let messages = await response.json();
 
-                emptyState.style.display = 'none';
-                inbox.innerHTML = messages.reverse().map((msg, index) => `
-                <div class="message-card">
-                    <div class="message-header">
-                        <div class="sender-info">
-                            <h4>${msg.name}</h4>
-                            <p>${msg.email}</p>
+                    // If PHP fails or empty, try localStorage as fallback
+                    if (messages.length === 0) {
+                        messages = JSON.parse(localStorage.getItem('portfolio_messages') || '[]');
+                    }
+
+                    if (messages.length === 0) {
+                        inbox.innerHTML = '';
+                        emptyState.style.display = 'block';
+                        return;
+                    }
+
+                    emptyState.style.display = 'none';
+                    inbox.innerHTML = messages.reverse().map((msg, index) => `
+                        <div class="message-card">
+                            <div class="message-header">
+                                <div class="sender-info">
+                                    <h4>${msg.name}</h4>
+                                    <p>${msg.email}</p>
+                                </div>
+                                <div class="message-date">${msg.date}</div>
+                            </div>
+                            <div class="message-body">${msg.message}</div>
                         </div>
-                        <div class="message-date">${msg.date}</div>
-                    </div>
-                    <div class="message-body">${msg.message}</div>
-                </div>
-            `).join('');
+                    `).join('');
+                } catch (error) {
+                    console.error('Error loading messages from backend:', error);
+                    // Fallback to localStorage
+                    const localMsgs = JSON.parse(localStorage.getItem('portfolio_messages') || '[]');
+                    if (localMsgs.length > 0) {
+                        loadMessagesFromData(localMsgs);
+                    } else {
+                        emptyState.style.display = 'block';
+                    }
+                }
             }
 
-            function clearMessages() {
-                if (confirm('Are you sure you want to clear all local messages?')) {
-                    localStorage.removeItem('portfolio_messages');
-                    loadMessages();
+            function loadMessagesFromData(messages) {
+                const inbox = document.getElementById('messageInbox');
+                const emptyState = document.getElementById('emptyState');
+                emptyState.style.display = 'none';
+                inbox.innerHTML = messages.reverse().map((msg, index) => `
+                    <div class="message-card">
+                        <div class="message-header">
+                            <div class="sender-info">
+                                <h4>${msg.name}</h4>
+                                <p>${msg.email}</p>
+                            </div>
+                            <div class="message-date">${msg.date}</div>
+                        </div>
+                        <div class="message-body">${msg.message}</div>
+                    </div>
+                `).join('');
+            }
+
+            async function clearMessages() {
+                if (confirm('Are you sure you want to clear all SERVER messages?')) {
+                    try {
+                        await fetch('clear_messages.php');
+                        localStorage.removeItem('portfolio_messages'); // Also clear local
+                        loadMessages();
+                    } catch (e) {
+                        alert('Error clearing messages on server');
+                    }
                 }
             }
 
