@@ -94,16 +94,38 @@
             margin: 1rem 0;
         }
 
+        .order-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .qty-input {
+            width: 70px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 12px;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .qty-input:focus {
+            border-color: var(--chicken-accent);
+        }
+
         .order-btn {
             background: var(--chicken-theme);
             color: white;
             border: none;
             padding: 0.8rem;
-            border-radius: 50px;
+            border-radius: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            width: 100%;
+            flex-grow: 1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -113,7 +135,61 @@
         .order-btn:hover {
             background: var(--chicken-accent);
             color: #000;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid rgba(230, 57, 70, 0.3);
+            padding: 3rem;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            color: var(--chicken-theme);
+            margin-bottom: 1.5rem;
+        }
+
+        .close-btn {
+            margin-top: 2rem;
+            background: var(--chicken-theme);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
         }
 
         .cart-float {
@@ -225,9 +301,12 @@
                 <div class="chicken-info">
                     <h3 data-i18n="chicken_menu_orig">Original Recipe</h3>
                     <div class="chicken-price">฿159</div>
-                    <button class="order-btn" onclick="addToCart('Original')">
-                        <i class="fas fa-plus"></i> <span data-i18n="chicken_order">Order Now</span>
-                    </button>
+                    <div class="order-group">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-orig">
+                        <button class="order-btn" onclick="addToCart('Original', 'qty-orig')">
+                            <i class="fas fa-plus"></i> <span data-i18n="chicken_order">Order Now</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <!-- Product 2 -->
@@ -236,9 +315,12 @@
                 <div class="chicken-info">
                     <h3 data-i18n="chicken_menu_spicy">Kuroyuki Spicy</h3>
                     <div class="chicken-price">฿169</div>
-                    <button class="order-btn" onclick="addToCart('Spicy')">
-                        <i class="fas fa-plus"></i> <span data-i18n="chicken_order">Order Now</span>
-                    </button>
+                    <div class="order-group">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-spicy">
+                        <button class="order-btn" onclick="addToCart('Spicy', 'qty-spicy')">
+                            <i class="fas fa-plus"></i> <span data-i18n="chicken_order">Order Now</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <!-- Product 3 -->
@@ -247,9 +329,12 @@
                 <div class="chicken-info">
                     <h3 data-i18n="chicken_menu_garlic">Garlic Butter</h3>
                     <div class="chicken-price">฿179</div>
-                    <button class="order-btn" onclick="addToCart('Garlic')">
-                        <i class="fas fa-plus"></i> <span data-i18n="chicken_order">Order Now</span>
-                    </button>
+                    <div class="order-group">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-garlic">
+                        <button class="order-btn" onclick="addToCart('Garlic', 'qty-garlic')">
+                            <i class="fas fa-plus"></i> <span data-i18n="chicken_order">Order Now</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <!-- Product 4 -->
@@ -258,9 +343,12 @@
                 <div class="chicken-info">
                     <h3 data-i18n="chicken_menu_soy">Soy Garlic</h3>
                     <div class="chicken-price">฿179</div>
-                    <button class="order-btn" onclick="addToCart('Soy')">
-                        <i class="fas fa-plus"></i> <span data-i18n="chicken_order">Order Now</span>
-                    </button>
+                    <div class="order-group">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-soy">
+                        <button class="order-btn" onclick="addToCart('Soy', 'qty-soy')">
+                            <i class="fas fa-plus"></i> <span data-i18n="chicken_order">Order Now</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -271,27 +359,74 @@
         <span id="cartCount">0</span>
     </div>
 
+    <!-- Modals -->
+    <div id="shopModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon"><i class="fas fa-utensils"></i></div>
+            <h3 id="modalTitle">Kuroyuki Info</h3>
+            <p id="modalMsg">Message goes here.</p>
+            <button class="close-btn" onclick="closeModal()">Got it!</button>
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
     <script>
-        let count = 0;
-        function addToCart(item) {
-            count++;
-            document.getElementById('cartCount').innerText = count;
+        // Load cart from localStorage
+        let count = parseInt(localStorage.getItem('cart_total')) || 0;
+        document.getElementById('cartCount').innerText = count;
+
+        function addToCart(item, inputId) {
+            const qtyInput = document.getElementById(inputId);
+            const qty = parseInt(qtyInput.value) || 1;
+
+            count += qty;
+            updateCart();
 
             // Animation
             const cart = document.querySelector('.cart-float');
-            cart.style.transform = 'scale(1.2)';
+            cart.style.transform = 'scale(1.3)';
             setTimeout(() => cart.style.transform = 'scale(1)', 200);
+
+            // Reset input
+            qtyInput.value = 1;
+
+            showModal('Added to Cart', `Added ${qty} ${item} Chicken to your basket!`);
+        }
+
+        function updateCart() {
+            document.getElementById('cartCount').innerText = count;
+            localStorage.setItem('cart_total', count);
         }
 
         function checkout() {
             if (count > 0) {
-                alert("Thank you! Kuroyuki is preparing your " + count + " orders.");
+                showModal('Order Success', `Thank you! Kuroyuki is preparing your ${count} orders. ✨`);
                 count = 0;
-                document.getElementById('cartCount').innerText = count;
+                updateCart();
             } else {
-                alert("Your basket is empty!");
+                showModal('Oops!', "Your basket is empty! 🍗");
             }
+        }
+
+        // Modal Control
+        const modal = document.getElementById('shopModal');
+        const mTitle = document.getElementById('modalTitle');
+        const mMsg = document.getElementById('modalMsg');
+
+        function showModal(title, msg) {
+            mTitle.innerText = title;
+            mMsg.innerText = msg;
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) closeModal();
         }
     </script>
 </body>

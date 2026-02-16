@@ -76,6 +76,29 @@
             margin: 1rem 0;
         }
 
+        .order-group {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .qty-input {
+            width: 70px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--drink-theme);
+            color: white;
+            border-radius: 12px;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .qty-input:focus {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
         .buy-btn {
             background: var(--drink-theme);
             color: white;
@@ -85,11 +108,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            flex-grow: 0;
         }
 
         .buy-btn:hover {
             background: white;
             color: var(--drink-theme);
+            transform: translateY(-2px);
         }
 
         .cart-float {
@@ -107,6 +132,73 @@
             font-size: 1.8rem;
             cursor: pointer;
             z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .cart-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: rgba(3, 4, 94, 0.85);
+            border: 1px solid var(--drink-theme);
+            padding: 3rem;
+            border-radius: 35px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            color: white;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            color: var(--drink-theme);
+            margin-bottom: 1.5rem;
+        }
+
+        .close-btn {
+            margin-top: 2rem;
+            background: var(--drink-theme);
+            color: white;
+            border: none;
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: white;
+            color: var(--drink-theme);
         }
 
         .home-link {
@@ -166,14 +258,20 @@
                 <div class="drink-icon"><i class="fas fa-glass-martini-alt"></i></div>
                 <h3 data-i18n="drink_kasayuki">KasaYuki (Sour)</h3>
                 <div class="drink-price">฿89</div>
-                <button class="buy-btn" onclick="addDrink()">Order Now</button>
+                <div class="order-group">
+                    <input type="number" value="1" min="1" class="qty-input" id="qty-kasayuki">
+                    <button class="buy-btn" onclick="addDrink('KasaYuki', 'qty-kasayuki')">Order Now</button>
+                </div>
             </div>
             <!-- Item 2 -->
             <div class="drink-card">
                 <div class="drink-icon"><i class="fas fa-ice-cream"></i></div>
                 <h3 data-i18n="drink_shinifuyu">ShiniFuyu (Sweet)</h3>
                 <div class="drink-price">฿99</div>
-                <button class="buy-btn" onclick="addDrink()">Order Now</button>
+                <div class="order-group">
+                    <input type="number" value="1" min="1" class="qty-input" id="qty-shinifuyu">
+                    <button class="buy-btn" onclick="addDrink('ShiniFuyu', 'qty-shinifuyu')">Order Now</button>
+                </div>
             </div>
         </div>
     </div>
@@ -184,17 +282,72 @@
             style="position: absolute; top: 0; right: 0; background: #ff4d4d; width: 25px; height: 25px; border-radius: 50%; font-size: 0.8rem; display: flex; justify-content: center; align-items: center;">0</span>
     </div>
 
+    <!-- Modals -->
+    <div id="shopModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon"><i class="fas fa-cocktail"></i></div>
+            <h3 id="modalTitle">Drink Bar Info</h3>
+            <p id="modalMsg">Message goes here.</p>
+            <button class="close-btn" onclick="closeModal()">Cheers!</button>
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
     <script>
-        let count = 0;
-        function addDrink() {
-            count++;
-            document.getElementById('cartCount').innerText = count;
+        // Load cart from localStorage
+        let count = parseInt(localStorage.getItem('cart_total')) || 0;
+        document.getElementById('cartCount').innerText = count;
+
+        function addDrink(item, inputId) {
+            const qtyInput = document.getElementById(inputId);
+            const qty = parseInt(qtyInput.value) || 1;
+
+            count += qty;
+            updateCart();
+
+            // Animation
+            const cart = document.querySelector('.cart-float');
+            cart.style.transform = 'scale(1.3)';
+            setTimeout(() => cart.style.transform = 'scale(1)', 200);
+
+            qtyInput.value = 1;
+            showModal('Drink Added', `Mixed ${qty} ${item} for you! 🥂`);
         }
+
+        function updateCart() {
+            document.getElementById('cartCount').innerText = count;
+            localStorage.setItem('cart_total', count);
+        }
+
         function checkout() {
-            if (count > 0) alert("Refreshing choice! Preparing your " + count + " drinks.");
-            count = 0;
-            document.getElementById('cartCount').innerText = 0;
+            if (count > 0) {
+                showModal('Refreshing choice!', `Preparing your ${count} drinks. Enjoy! 🍹`);
+                count = 0;
+                updateCart();
+            } else {
+                showModal('Wait!', "Your shaker is empty! 🧊");
+            }
+        }
+
+        // Modal Control
+        const modal = document.getElementById('shopModal');
+        const mTitle = document.getElementById('modalTitle');
+        const mMsg = document.getElementById('modalMsg');
+
+        function showModal(title, msg) {
+            mTitle.innerText = title;
+            mMsg.innerText = msg;
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) closeModal();
         }
     </script>
 </body>
