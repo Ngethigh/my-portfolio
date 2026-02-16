@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Lab | Dev + Tester</title>
+    <link rel="stylesheet" href="css/todo.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+            z-index: 10;
+        }
+
+        .back-link:hover {
+            color: #38bdf8;
+        }
+
+        @media (max-width: 600px) {
+            .back-link {
+                position: static;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+    <div class="app-container">
+        <header>
+            <h1>To-Do List <span class="badge">Lab</span></h1>
+            <p class="subtitle">Focus on Logic & Quality</p>
+        </header>
+
+        <main>
+            <!-- Feature 1: Add Task -->
+            <div class="input-group">
+                <input type="text" id="todoInput" placeholder="Add a new task..." aria-label="New task name">
+                <button id="addBtn" title="Add Task">
+                    <i class="fas fa-plus"></i> Add
+                </button>
+            </div>
+
+            <!-- Task List -->
+            <ul id="todoList" class="todo-list">
+                <!-- Tasks will be added here via JS -->
+            </ul>
+
+            <!-- Stats Table (Tester's View) -->
+            <div class="stats-panel">
+                <div class="stat-item">
+                    <span class="label">Total:</span>
+                    <span id="totalCount" class="value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">Completed:</span>
+                    <span id="completedCount" class="value">0</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/todo.js"></script>
+</body>
+
+</html>
